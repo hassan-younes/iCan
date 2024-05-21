@@ -121,7 +121,7 @@ function handleClick(index){
      <Section id='home' >
       
         <div
-          className="absolute  flex flex-col    lg:rotate-0 lg:scale-150 -rotate-90 md:scale-200 scale-[3] inset-x-0  brightness-150 hue-rotate-[4deg] -z-10 transform-gpu sm:overflow-y-hidden blur-[2px] opacity-70  saturate-[0.11]"
+          className="absolute  flex flex-col    lg:rotate-0 lg:scale-150 -rotate-90 md:scale-200 scale-[3] inset-x-0  brightness-150 hue-rotate-[4deg] -z-10 transform-gpu sm:overflow-y-hidden blur-[2px] opacity-70  saturate-[0]"
           aria-hidden="true"
           >
             <Background />

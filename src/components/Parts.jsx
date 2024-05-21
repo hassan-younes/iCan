@@ -2,7 +2,6 @@
 
 import { Button } from "./ui/button"
 
-
 export default  function Parts({index}) {
     const data=[
     {
@@ -30,8 +29,9 @@ export default  function Parts({index}) {
 
 ]
     return (
-        <div  className={`w-full rounded-xl bg-[url("./assets/${index}.jpg")] bg-center bg-no-repeat bg-cover h-full `}>
-           <div className="flex  rounded-xl flex-col justify-around items-center  w-full text-white backdrop-blur-[1px] h-full bg-gradient-to-b from-[#2c2c2cb0] to-[#353535a1]">
+        <div  className={`w-full rounded-xl  relative h-full `}>
+            <img src={`${index}.jpg`}  className="absolute w-full z-0 object-cover object-center  "  alt="" />
+           <div className="flex  rounded-xl flex-col z-10 justify-around items-center  w-full text-white backdrop-blur-[1px] h-full bg-gradient-to-b from-[#2c2c2cb0] to-[#353535a1]">
 
       <Part data={data} i={index} />
             
