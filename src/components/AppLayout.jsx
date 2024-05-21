@@ -17,15 +17,20 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel"
 import Parts from './Parts'
+import { motion, useScroll} from "framer-motion";
+const parts=["قسم البرمجيات","قسم التصميم والغرافيكس","قسم المونتاج والموشن غرافيك","قسم التسوقي الرقمي","قسم الدعم التقني"]
 const navigation = [
   { name: 'الرئيسية', href: '#home' },
   { name: 'أقسامنا', href: '#parts' },
-  { name: 'آخر الأخبار' , href: '#' },
+  { name: 'من نحن' , href: '#us' },
   { name: 'اتصل بنا', href: '#' },
   { name: 'انضم الينا', href: '#feature' },
 ]
 
 export default function AppLayout() {
+   const { scrollYProgress } = useScroll()
+
+
  const plugin = useRef(
     Autoplay({ delay: 2000, stopOnInteraction: true })
   )
@@ -36,7 +41,11 @@ function handleClick(index){
   setMobileMenuOpen(false)
 }
   return (
+    <>
+return <motion.div style={{ scaleX: scrollYProgress }} />
     <div className='bg-stone-100'>
+
+      
       <header className="fixed w-full  top-0  flex-non z-50 backdrop-blur-md   bg-[#ffffff]">
       <div className='max-w-[90rem] mx-auto'>
 
@@ -129,7 +138,7 @@ function handleClick(index){
               </div>
          
         <Container type="row">
-           
+           <motion.div  animate={{ x: 0,opacity: 1  }}  initial={{ x: 100,opacity: 0 }} transition={{ ease: "easeOut", duration: 1 }}>
           <div className=" lg:scale-[1.4] flex flex-col justify-center lg:gap-1  md:scale-[1]  ">
             <h1 className="text-2xl sm:text-right text-center font-bold  sm:leading-tight tracking-tight text-neutral-400  ">
               <span className='text-[5rem] sm:text-[4rem] lg:text-[2.5rem]'> 
@@ -156,12 +165,13 @@ function handleClick(index){
               </a>
             </div>
           </div>
+          </motion.div>
 
-            
+             <motion.div animate={{ x: 0,opacity: 1  }}  initial={{ x: -100,opacity: 0 }} transition={{ ease: "easeOut", duration: 1 }}>
          <div className="hidden  mt-20  md:-ml-16 sm:-ml-16 -ml-44 sm:max-w-[25rem] max-w-[50rem] sm:scale-[1] lg:scale-[1.6]  overflow-hidden  scale-90 brightness-110 hue-rotate-[-125deg] sm:flex sm:justify-end">
             <Animation />
           </div>
-
+                      </motion.div>
 
         </Container>
   
@@ -171,7 +181,7 @@ function handleClick(index){
        
         <Container type="col">
           <h1 className='text-3xl text-yellow-500 font-bold'>أقسامنا</h1>
-          <div dir='ltr' className="md:block hidden w-full md:px-0 px-14">
+          <div dir='ltr' className=" w-full md:px-0 px-14">
 
               <Carousel
                 plugins={[plugin.current]}
@@ -185,7 +195,7 @@ function handleClick(index){
                     <CarouselItem key={index}>
                       <div className=" w-full">
                         <Card>
-                          <CardContent className="flex  w-full h-[calc(100vh-10rem)] items-center justify-center ">
+                          <CardContent className="flex  w-full h-[300px]  md:h-[calc(100vh-10rem)] items-center justify-center ">
                           <Parts index={index} />
                           </CardContent>
                         </Card>
@@ -196,32 +206,35 @@ function handleClick(index){
                 <CarouselPrevious />
               </Carousel>
         </div>
-          <div dir='ltr' className="block md:hidden  w-full md:px-0 px-2">
+         
+        </Container>
+  
+      </Section>
+     <Section id='us' >
+      
+       
+        <Container type="col">
+        
+          <h1 className='text-3xl text-yellow-500 font-bold'>من نحن</h1>
+          <h2 className='text-2xl px-6'>iCAN |Technical Solutions</h2>
+          <h2 className='text-2xl  text-center leading-relaxed px-6'>
+<span className='py-6 block'> للاستشارات والحلول البرمجية والتقنية وكل ما يتعلق بتكنولوجيا المعلومات والاتصالات</span>
+<span className='block font-bold text-yellow-500 text-right'>للشركة 5 اقسام رئيسية وهي :</span>
+</h2>
 
-              <Carousel
-              opts={{
-        align: "start",
-      }}
-      orientation="vertical"
-      className="w-full h-full"
-                >
-                <CarouselContent className="-mt-1 h-[400px]" >
-                  {Array.from({ length: 5 }).map((_, index) => (
-                    <CarouselItem key={index}  className="  md:basis-1/2">
-                      <div >
-                        <Card >
-                          <CardContent className="flex    h-[380px]   items-center justify-center ">
-                          <Parts index={Number(index)} />
-                          </CardContent>
-                        </Card>
-                      </div>
-                    </CarouselItem>
-                  ))}
-                </CarouselContent>
-                <CarouselNext />
-                <CarouselPrevious />
-              </Carousel>
-        </div>
+<ul className='shadow-xl bg-yellow-50   shadow-yellow-200'>
+{parts.map((part,index)=> 
+  <motion.div  key={index} animate={{ y: 0,opacity: 1  }}  initial={{ y: 100,opacity: 0 }} transition={{ ease: "easeOut", duration: 1}}>
+<li className='text-center my-2 w-full text-yellow-500 bg-white px-6 py-4 rounded-md ' >{part}</li>
+</motion.div>)
+}
+
+</ul>
+<p className='py-10 text-center font-semibold leading-loose  px-16'> إلى كافة الفعاليات المختلفة مثل أصحاب (البنوك والمصارف - المطاعم والكافيهات - الفنادق- المشافي -  نقاط البيع والمولات والسوبر ماركت- محلات التجارية من البسة واحذية وهدايا وعطور وزهور  وحلويات والكترونيات ومفروشات - صالونات ومراكز التجميل و المكياج - محلات المجوهرات والذهب - النوادي الرياضية - المكاتب السياحية والسفر والشحن - العقارات والمقاولات  - مكاتب السيارات - المعاهد والمدارس والجامعات - العيادات و الصيدليات والمخابر والمراكز الطبية والتجميلية - خدمات البيع - خدمات التوصيل الدلفري - المعامل والمصانع - المكتبات ودار النشر - برامج المحاسبة - شركات الاستيراد والتصدير - تسيير واتمتة المعاملات - المحامين والقضاة والاطباء والمهندسين - الدفع الالكتروني - محطات البانزين- وكافة المهن العامة و الخاصة والنقابات المهنية وجميع المديريات و المؤسسات والشركات الحكومية والخاصة وكافة الفعاليات مهما كان اختصاصها) .
+
+جاهزون لتصميم وبرمجة برامج ويندز وتطبيقات الاندرويد و الايفون بالاضافة لمواقع الويب لإدارة عملكم بشكل سلس ومريح و كامل وبما يغطي كافة تفاصيل العمل وتسهيل التواصل مع العملاء بشكل احترافي وفق تصماميم مميزة وسهلة الاستخدام.
+وجاهزون ايضا لكافة تصاميم الغرافيك وعمل المونتاج من اجل نجاح شركاتكم وعرض منتجاتكم كافة بكل دقة واحترافية من اجل ارضائكم بالاضافة للتسويق لها رقميا بكافة طرق التسويق الرقمي .</p>
+         
         </Container>
   
       </Section>
@@ -230,5 +243,8 @@ function handleClick(index){
             
       </main>
     </div>
+    </>
   )
 }
+
+
